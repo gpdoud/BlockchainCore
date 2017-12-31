@@ -24,7 +24,7 @@ var Block = /** @class */ (function () {
         console.log("Ts:\t", this.ts.toISOString());
         console.log("Nonce:\t", this.nonce);
         console.log("Data:\t", this.data);
-        console.log("\t", "----------------------------------------------------------------");
+        console.log("-------\t", "----------------------------------------------------------------");
     };
     return Block;
 }());
