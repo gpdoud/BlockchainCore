@@ -50,7 +50,7 @@ var Blockchain = /** @class */ (function () {
             var calchash = this.sha256.hash(block.forHash());
             if (calchash != block.hash) {
                 isCorrupt = true;
-                console.log("Block", block.blk, "is corrupt!");
+                console.log("Block", block.blk, "is corrupt! - hash is", calchash.substring(57), "but should be", block.hash.substring(57));
             }
         }
         if (isCorrupt) {
@@ -61,7 +61,6 @@ var Blockchain = /** @class */ (function () {
         }
     };
     Blockchain.prototype.print = function () {
-        console.log("\t", "================================================================");
         for (var _i = 0, _a = this.blocks; _i < _a.length; _i++) {
             var block = _a[_i];
             block.debug();

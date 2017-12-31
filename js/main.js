@@ -9,9 +9,9 @@ var Main = /** @class */ (function () {
     Main.prototype.run = function () {
         this.blockchain.add(new block_1.Block("Second block"));
         this.blockchain.add(new block_1.Block("Third block"));
-        this.blockchain.print();
-        console.log("Intentionally corrupting block 2");
+        console.log("Intentionally corrupting block 2 by forcing data to upper case.");
         this.corruptBlock(this.blockchain.blocks[1]);
+        this.blockchain.print();
         this.blockchain.check();
     };
     Main.prototype.corruptBlock = function (block) {

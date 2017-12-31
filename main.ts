@@ -8,9 +8,9 @@ export class Main {
 	run() {
 		this.blockchain.add(new Block("Second block"));
 		this.blockchain.add(new Block("Third block"));
-		this.blockchain.print();
-		console.log("Intentionally corrupting block 2");
+		console.log("Intentionally corrupting block 2 by forcing data to upper case.");
 		this.corruptBlock(this.blockchain.blocks[1]);
+		this.blockchain.print();
 		this.blockchain.check();
 	}
 

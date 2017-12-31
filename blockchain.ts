@@ -52,7 +52,8 @@ export class Blockchain {
 			let calchash = this.sha256.hash(block.forHash());
 			if(calchash != block.hash) {
 				isCorrupt = true;
-				console.log("Block", block.blk, "is corrupt!");
+				console.log("Block", block.blk, "is corrupt! - hash is", 
+									calchash.substring(57), "but should be", block.hash.substring(57));
 			}
 		}
 		if(isCorrupt) {
@@ -63,7 +64,6 @@ export class Blockchain {
 	}
 
 	print() {
-		console.log("\t", "================================================================");
 		for(let block of this.blocks) {
 			block.debug();
 		}
