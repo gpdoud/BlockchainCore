@@ -17,8 +17,12 @@ export class Block {
 
  	debug(): void {
  		console.log("---");
-		console.log("Blk[", this.blk,"]...PHash[",this.phash.substring(57),"]...Hash[",this.hash.substring(57),"]...Ts[", this.ts.toISOString(),"]...Nonce[", this.nonce, "]");
-		console.log("Data follows:")
+		console.log("Blk:\t [", this.blk,"]");
+		console.log("PHash:\t [",this.phash.substring(57),"]");
+		console.log("Hash:\t [",this.hash.substring(57),"]");
+		console.log("Ts:\t [", this.ts.toISOString(),"]");
+		console.log("Nonce:\t [", this.nonce, "]");
+		console.log("Data follows --------------");
 		console.log(this.data);
  		console.log("---");
 	}
