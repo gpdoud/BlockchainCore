@@ -3,7 +3,6 @@ import { SHA256 } from './sha256';
 
 export class Blockchain {
 
-	sha256: SHA256 = new SHA256();
 	blocks: Block[] = [];
 
 	add(block: Block): void {
@@ -29,7 +28,7 @@ export class Blockchain {
 	mine(block: Block): Block {
 		block.nonce = 0;
 		while(true) {
-			block.hash = this.sha256.hash(block.forHash());
+			block.hash = SHA256.hash(block.forHash());
 			if(this.isHashSecure(block.hash)) {
 				return block;
 			}
@@ -49,11 +48,15 @@ export class Blockchain {
 	check() {
 		let isCorrupt = false;
 		for(let block of this.blocks) {
-			let calchash = this.sha256.hash(block.forHash());
+			let calchash = SHA256.hash(block.forHash());
+			
 			if(calchash != block.hash) {
 				isCorrupt = true;
-				console.log("Block", block.blk, "is corrupt! - hash is", 
-									calchash.substring(57), "but should be", block.hash.substring(57));
+				console.log("Block", block.blk, "is corrupt! - hash is [", 
+									calchash.substring(58), "] but should be [", block.hash.substring(58), "]");
+			} else if(block.trans.merkleRoot != block.trans.calcMerkleRoot()) {
+				isCorrupt = true;
+				console.log("Transactions are corrupt!");
 			}
 		}
 		if(isCorrupt) {
@@ -64,6 +67,7 @@ export class Blockchain {
 	}
 
 	print() {
+		console.log("================================================================================================");
 		for(let block of this.blocks) {
 			block.debug();
 		}
